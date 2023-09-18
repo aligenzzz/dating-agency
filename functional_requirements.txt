@@ -7,6 +7,7 @@ Authorization -> User (Client / Moderator / Admin)
 - chat with other client
 - make meetings with other clients
 - edit your own information
+- add complaint
 
 	Moderator:
 - ban users
