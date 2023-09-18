@@ -43,7 +43,7 @@ Action:
 Client:
 + first_name: varchar
 + last_name: varchar
-+ age: int
++ age: int (=> 14)
 + photo: varchar URL_FIELD
 + banned: bool NOT_NULL
 
