@@ -2,9 +2,9 @@ m - mandatory
 o - optional
 
 (mMTmO User-Role)
-(mOTmO User-Client)
-(mOTmO User-Admin)
-(mOTmO User-Moderaror)
+(mOToO User-Client)
+(mOToO User-Admin)
+(mOToO User-Moderaror)
 User:
 + username: varchar NOT_NULL
 + email: varchar
@@ -14,12 +14,12 @@ User:
 Role:
 + name: varchar NOT_NULL
 
-(mOTmO Moderator-User)
+(oOTmO Moderator-User)
 (mMTmM Moderaror-Action)
 Moderator:
 NOT ENTITY
 
-(mOTmO Admin-User)
+(oOTmO Admin-User)
 (mMToM Admin-Complaint)
 Admin:
 NOT ENTITY
@@ -35,7 +35,7 @@ Action:
 + username: varchar NOT_NULL
 + datetime: datetime NOT_NULL
 
-(mOTmO Client-User)
+(oOTmO Client-User)
 (mOToO Client-Information)
 (mMToM Client-Chat)
 (oMToO Client-Location)
