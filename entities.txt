@@ -1,0 +1,82 @@
+m - mandatory
+o - optional
+
+(mMTmO User-Role)
+(mOTmO User-Client)
+(mOTmO User-Admin)
+(mOTmO User-Moderaror)
+User:
++ username: varchar NOT_NULL
++ email: varchar
++ password: varchar NOT_NULL
+
+(mOTmM Role-User)
+Role:
++ name: varchar NOT_NULL
+
+(mOTmO Moderator-User)
+(mMTmM Moderaror-Action)
+Moderator:
+NOT ENTITY
+
+(mOTmO Admin-User)
+(mMToM Admin-Complaint)
+Admin:
+NOT ENTITY
+
+(oMTmM Complaint-Admin)
+Complaint:
++ username: varchar NOT_NULL
++ content: varchar NOT_NULL
+
+(mMTmM Action-Moderator)
+Action:
++ name: varchar NOT_NULL
++ username: varchar NOT_NULL
++ datetime: datetime NOT_NULL
+
+(mOTmO Client-User)
+(mOToO Client-Information)
+(mMToM Client-Chat)
+(oMToO Client-Location)
+(mMToM Client-Meeting)
+Client:
++ first_name: varchar
++ last_name: varchar
++ age: int
++ photo: varchar URL_FIELD
++ banned: bool NOT_NULL
+
+(oOTmO Information-Client)
+Information:
++ hobbies: varchar
++ occupation: varchar
++ other: varchar
+
+(oMTmM Chat-Client)
+(mOToM Chat-Message)
+Chat:
++ name: varchar NOT_NULL
++ image: varchar URL_FIELD
+
+(oMTmO Message-Chat)
+Message:
++ content: varchar NOT_NULL
++ datetime: datetime NOT_NULL
++ sender: varchar NOT_NULL
+
+(oOToM Location-Client)
+(mOToM Location-Meeting)
+Location:
++ country: varchar NOT_NULL
++ city: varchar
++ address: varchar
+
+(oMTmO Meeting-Location)
+(oMTmM Meeting-Client)
+Meeting:
++ name: varchar NOT_NULL
++ datetime: datetime NOT_NULL
++ active: bool NOT_NULL
+
+

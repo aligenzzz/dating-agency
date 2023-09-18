@@ -1,0 +1,21 @@
+Non-user -> Registrate
+
+Authorization -> User (Client / Moderator / Admin)
+
+	Client:
+- view profiles of other clients
+- chat with other client
+- make meetings with other clients
+- edit your own information
+
+	Moderator:
+- ban users
+- logging user actions
+
+	Admin:
+- CRUD all models
+- edit role
+- process complaints
+
+
+ 
