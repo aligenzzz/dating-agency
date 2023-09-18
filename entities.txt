@@ -43,7 +43,7 @@ Action:
 Client:
 + first_name: varchar
 + last_name: varchar
-+ age: int (=> 14)
++ age: tinyint (=> 14)
 + photo: varchar URL_FIELD
 + banned: bool NOT_NULL
 
@@ -77,6 +77,6 @@ Location:
 Meeting:
 + name: varchar NOT_NULL
 + datetime: datetime NOT_NULL
-+ active: bool NOT_NULL
++ active: boolean NOT_NULL
 
 
