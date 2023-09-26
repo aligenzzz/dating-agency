@@ -1,0 +1,70 @@
+m - mandatory
+o - optional
+
+(mMTmO User-Role)
+(mOToO User-Client)
+User:
++ username: varchar NOT_NULL <= 30
++ email: varchar <= 30
++ password: varchar NOT_NULL <= 30
+
+(mOTmM Role-User)
+Role:
++ name: varchar NOT_NULL <= 15
+
+(oMTmO Complaint-Client)
+Complaint:
++ content: varchar NOT_NULL <= 1000
+
+(oMTmO Action-Client)
+Action:
++ name: varchar NOT_NULL <= 150
++ datetime: datetime NOT_NULL
+
+(oOTmO Client-User)
+(mOToO Client-Information)
+(mMToM Client-Chat)
+(oMToO Client-Location)
+(mMToM Client-Meeting)
+(mOToM Client-Complaint)
+(mOToM Client-Action)
+Client:
++ first_name: varchar <= 30
++ last_name: varchar <= 30
++ age: tinyint (=> 14)
++ photo: varchar URL_FIELD
++ banned: boolean NOT_NULL
+
+(oOTmO Information-Client)
+Information:
++ hobbies: varchar <= 150
++ occupation: varchar <= 150
++ other: varchar <= 500
+
+(oMTmM Chat-Client)
+(mOToM Chat-Message)
+Chat:
++ name: varchar NOT_NULL <= 30
++ image: varchar URL_FIELD
+
+(oMTmO Message-Chat)
+Message:
++ content: varchar NOT_NULL <= 1000
++ datetime: datetime NOT_NULL
++ sender: varchar NOT_NULL <= 30
+
+(oOToM Location-Client)
+(mOToM Location-Meeting)
+Location:
++ country: varchar NOT_NULL <= 30
++ city: varchar <= 30
++ address: varchar <= 50
+
+(oMTmO Meeting-Location)
+(oMTmM Meeting-Client)
+Meeting:
++ name: varchar NOT_NULL <= 30
++ datetime: datetime NOT_NULL
++ active: boolean NOT_NULL
+
+

@@ -4,7 +4,10 @@
 ## Functional Requirements
 [-->](functional_requirements.txt)
 ## Scheme
-![scheme](scheme.png)
+### Infological DB Model
+![infological_scheme](documentation/infological.png)
+### Datalogical DB Model
+![datalogical_scheme](documentation/datalogical.png)
 ## Entities
 [-->](entities.txt)
 
