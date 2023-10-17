@@ -5,8 +5,8 @@ CREATE TABLE IF NOT EXISTS Users
     Id    INTEGER    PRIMARY KEY AUTOINCREMENT,
     
     Username    VARCHAR (30)    NOT NULL UNIQUE,
-    Email    VARCHAR (30)    UNIQUE,
-    Password    VARCHAR (30)    NOT NULL UNIQUE,
+    Email    VARCHAR (30),
+    Password    VARCHAR (30)    NOT NULL,
     
     RoleId    INTEGER    REFERENCES Roles (Id) ON DELETE SET NULL
 );
