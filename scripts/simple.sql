@@ -7,6 +7,14 @@ SELECT
 FROM Users
 JOIN Roles ON RoleId = Roles.Id;
 
+-- get counters of all roles
+SELECT 
+    Roles.Name AS Role,
+    COUNT (*) AS Count
+FROM Users
+JOIN Roles ON RoleId = Roles.Id
+GROUP BY Roles.Name;
+
 -- get all moderators
 SELECT Username
 FROM Users
