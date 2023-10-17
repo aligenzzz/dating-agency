@@ -4,21 +4,21 @@ o - optional
 (mMTmO User-Role)
 (mOToO User-Client)
 User:
-+ username: varchar NOT_NULL <= 30
++ username: varchar <= 30 NOT_NULL
 + email: varchar <= 30
-+ password: varchar NOT_NULL <= 30
++ password: varchar <= 30 NOT_NULL
 
 (mOTmM Role-User)
 Role:
-+ name: varchar NOT_NULL <= 15
++ name: varchar <= 15 NOT_NULL
 
 (oMTmO Complaint-Client)
 Complaint:
-+ content: varchar NOT_NULL <= 1000
++ content: varchar <= 1000 NOT_NULL
 
 (oMTmO Action-Client)
 Action:
-+ name: varchar NOT_NULL <= 150
++ name: varchar <= 150 NOT_NULL
 + datetime: datetime NOT_NULL
 
 (oOTmO Client-User)
@@ -29,11 +29,11 @@ Action:
 (mOToM Client-Complaint)
 (mOToM Client-Action)
 Client:
-+ first_name: varchar <= 30
-+ last_name: varchar <= 30
-+ age: tinyint (=> 14)
-+ photo: varchar URL_FIELD
-+ banned: boolean NOT_NULL
++ first_name: varchar <= 30 NOT_NULL
++ last_name: varchar <= 30 NOT_NULL
++ age: tinyint => 14 NOT_NULL
++ photo: varchar <= 1024
++ banned: boolean NOT_NULL default=False
 
 (oOTmO Information-Client)
 Information:
@@ -44,27 +44,27 @@ Information:
 (oMTmM Chat-Client)
 (mOToM Chat-Message)
 Chat:
-+ name: varchar NOT_NULL <= 30
-+ image: varchar URL_FIELD
++ name: varchar <= 30 NOT_NULL
++ image: varchar <= 1024
 
 (oMTmO Message-Chat)
 Message:
-+ content: varchar NOT_NULL <= 1000
++ content: varchar <= 1000 NOT_NULL
 + datetime: datetime NOT_NULL
-+ sender: varchar NOT_NULL <= 30
++ sender: varchar <= 30 NOT_NULL
 
 (oOToM Location-Client)
 (mOToM Location-Meeting)
 Location:
-+ country: varchar NOT_NULL <= 30
++ country: varchar <= 30 NOT_NULL
 + city: varchar <= 30
 + address: varchar <= 50
 
 (oMTmO Meeting-Location)
 (oMTmM Meeting-Client)
 Meeting:
-+ name: varchar NOT_NULL <= 30
++ name: varchar <= 30 NOT_NULL
 + datetime: datetime NOT_NULL
-+ active: boolean NOT_NULL
++ active: boolean NOT_NULL default=True
 
 
