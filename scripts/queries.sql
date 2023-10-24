@@ -1,4 +1,6 @@
--- simple queries
+-- simple and complex queries
+
+--lab3--
 
 -- get all users
 SELECT
@@ -109,3 +111,56 @@ FROM Actions
 JOIN Clients ON ClientId = Clients.Id
 JOIN Users ON Clients.UserId = Users.Id
 ORDER BY DateTime DESC;
+
+--lab4--
+
+-- get user by firstName and lastName
+SELECT Clients.*
+FROM Clients
+WHERE FirstName = "Elena" AND LastName = "Mason";
+
+-- get user-client with his full name
+SELECT Username, Password, Email, 
+    (SELECT FirstName || ' ' || LastName 
+     FROM Clients
+     WHERE UserId = Users.Id) AS FullName
+FROM Users
+WHERE RoleId = 1;
+
+-- get chat with the last message
+SELECT Id, Name, Image,
+    (SELECT Content
+     FROM Messages
+     GROUP BY ChatId
+     HAVING DateTime = MAX(DateTime)) AS LastMessage
+FROM Chats;
+
+-- get partitions of clients' actions with row numbers
+SELECT 
+    Id, Name, DateTime,
+    ROW_NUMBER() OVER (PARTITION BY ClientId ORDER BY DateTime DESC) 
+                    AS Number,
+    Users.Username
+FROM Actions
+JOIN Clients ON ClientId = Clients.Id
+JOIN Users ON Clients.UserId = Users.Id;
+
+-- select clients if user with role client exist
+SELECT * 
+FROM Clients
+WHERE EXISTS 
+    (SELECT * 
+     FROM Users 
+     WHERE RoleId = 1);
+     
+-- get clients with some classification
+SELECT Id, FirstName, LastName, Age,
+    CASE
+        WHEN Age < 20 THEN 'Teenager'
+        WHEN Age < 40 THEN 'Young adult'
+        WHEN Age < 60 THEN 'Middle aged adult'
+        ELSE 'Retired'
+    END AS AgeType,
+    IIF(Photo IS NULL, 'No photo', Photo) 
+        AS Photo
+FROM Clients;

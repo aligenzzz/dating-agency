@@ -17,6 +17,8 @@ INSERT INTO Complaints (Content, ClientId) VALUES
 INSERT INTO Actions (Name, DateTime, ClientId) VALUES
 ("Has been registered", datetime('now'), 1),
 ("Has been registered", datetime('now'), 2);
+INSERT INTO Actions (Name, DateTime, ClientId) VALUES
+("Has been changed password", datetime('now'), 1);
 
 INSERT INTO Clients (FirstName, LastName, Age, UserId, InformationId, LocationId) VALUES
 ("Michael", "Smith", 23, 1, 1, 1),
