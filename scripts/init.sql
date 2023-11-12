@@ -1,52 +1,51 @@
 -- script which fills tables with data
 
-INSERT INTO Users (Username, Password, RoleId) VALUES
-("client1", "client", 1),
-("client2", "client", 1),
-("moderator", "moderator", 2),
-("admin", "admin", 3);
+INSERT INTO Roles (Id, Name) VALUES
+(1, 'Client'),
+(2, 'Moderator'),
+(3, 'Admin');
 
-INSERT INTO Roles (Name) VALUES
-("Client"),
-("Moderator"),
-("Admin");
+INSERT INTO Users (Id, Username, Password, RoleId) VALUES
+(1, 'client1', 'client', 1),
+(2, 'client2', 'client', 1),
+(3, 'moderator', 'moderator', 2),
+(4, 'admin', 'admin', 3);
 
-INSERT INTO Complaints (Content, ClientId) VALUES
-("I dont like interface!", 1);
+INSERT INTO Informations (Id, Occupation) VALUES
+(1, 'Manager'),
+(2, 'Programmer');
 
-INSERT INTO Actions (Name, DateTime, ClientId) VALUES
-("Has been registered", datetime('now'), 1),
-("Has been registered", datetime('now'), 2);
-INSERT INTO Actions (Name, DateTime, ClientId) VALUES
-("Has been changed password", datetime('now'), 1);
+INSERT INTO Locations (Id, Country, City, Address) VALUES
+(1, 'USA', 'LA', NULL),
+(2, 'Canada', 'Montreal', NULL),
+(3, 'USA', 'Hawaii', '91-1001 Farrington Hwy Kapolei');
 
-INSERT INTO Clients (FirstName, LastName, Age, UserId, InformationId, LocationId) VALUES
-("Michael", "Smith", 23, 1, 1, 1),
-("Elena", "Mason", 22, 2, 2, 2); 
+INSERT INTO Clients (Id, FirstName, LastName, Age, UserId, InformationId, LocationId) VALUES
+(1, 'Michael', 'Smith', 23, 1, 1, 1),
+(2, 'Elena', 'Mason', 22, 2, 2, 2); 
 
-INSERT INTO Informations (Occupation) VALUES
-("Manager"),
-("Programmer");
+INSERT INTO Complaints (Id, Content, ClientId) VALUES
+(1, 'I dont like interface!', 1);
 
-INSERT INTO Chats (Name) VALUES
-("Simple conversation...");
+INSERT INTO Actions (Id, Name, DateTime, ClientId) VALUES
+(1, 'Has been registered', NOW(), 1),
+(2, 'Has been changed password', NOW(), 1),
+(3, 'Has been registered', NOW(), 2);
 
-INSERT INTO Messages (Content, DateTime, Sender, ChatId) VALUES
-("Hi!!", datetime('now'), "client1", 1),
-("hello, whats up??", datetime('now'), "client2", 1);
+INSERT INTO Chats (Id, Name) VALUES
+(1, 'Simple conversation...');
 
-INSERT INTO Locations (Country, City, Address) VALUES
-("USA", "LA", NULL),
-("Canada", "Montreal", NULL),
-("USA", "Hawaii", "91-1001 Farrington Hwy Kapolei");
+INSERT INTO Messages (Id, Content, DateTime, Sender, ChatId) VALUES
+(1, 'Hi!!', NOW(), 'client1', 1),
+(2, 'hello, whats up??', NOW() + INTERVAL '1 second', 'client2', 1);
 
-INSERT INTO Meetings (Name, DateTime, LocationId) VALUES
-("Simple meeting...", '2024-03-12', 3);
+INSERT INTO Meetings (Id, Name, DateTime, LocationId) VALUES
+(1, 'Simple meeting...', '2024-03-12', 3);
 
-INSERT INTO ClientChats (ClientId, ChatId) VALUES
-(1, 1),
-(2, 1);
+INSERT INTO ClientChats (Id, ClientId, ChatId) VALUES
+(1, 1, 1),
+(2, 2, 1);
 
-INSERT INTO ClientMeetings (ClientId, MeetingId) VALUES
-(1, 1),
-(2, 1);
+INSERT INTO ClientMeetings (Id, ClientId, MeetingId) VALUES
+(1, 1, 1),
+(2, 2, 1);

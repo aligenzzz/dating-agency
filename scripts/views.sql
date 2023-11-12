@@ -1,4 +1,4 @@
-CREATE VIEW IF NOT EXISTS ClientDetails AS
+CREATE VIEW ClientDetails AS
 SELECT 
     FirstName, LastName, Age,
     Users.Username, Users.Email,

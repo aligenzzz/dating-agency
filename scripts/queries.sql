@@ -21,19 +21,19 @@ GROUP BY Roles.Name;
 SELECT Username
 FROM Users
 JOIN Roles ON RoleId = Roles.Id 
-AND Roles.Name = "Moderator";
+AND Roles.Name = 'Moderator';
 
 -- get all admins
 SELECT Username
 FROM Users
 JOIN Roles ON RoleId = Roles.Id 
-AND Roles.Name = "Admin";
+AND Roles.Name = 'Admin';
 
 -- get all clients
 SELECT Username
 FROM Users
 JOIN Roles ON RoleId = Roles.Id 
-AND Roles.Name = "Client";
+AND Roles.Name = 'Client';
 
 -- get all information about clients
 SELECT 
@@ -93,7 +93,7 @@ SELECT
     Locations.Country, Locations.City, Locations.Address
 FROM Meetings
 JOIN Locations ON LocationId = Locations.Id
-WHERE Active = 1; 
+WHERE Active = TRUE; 
 
 -- get all complaints
 SELECT 
@@ -117,7 +117,7 @@ ORDER BY DateTime DESC;
 -- get user by firstName and lastName
 SELECT Clients.*
 FROM Clients
-WHERE FirstName = "Elena" AND LastName = "Mason";
+WHERE FirstName = 'Elena' AND LastName = 'Mason';
 
 -- get user-client with his full name
 SELECT Username, Password, Email, 
@@ -128,16 +128,17 @@ FROM Users
 WHERE RoleId = 1;
 
 -- get chat with the last message
-SELECT Id, Name, Image,
-    (SELECT Content
-     FROM Messages
-     GROUP BY ChatId
-     HAVING DateTime = MAX(DateTime)) AS LastMessage
-FROM Chats;
+-- worked in sqlite, not in postgre
+-- SELECT Id, Name, Image,
+--     (SELECT Content 
+--      FROM Messages
+--      GROUP BY ChatId
+--      HAVING DateTime = MAX(DateTime)) AS LastMessage
+-- FROM Chats;
 
 -- get partitions of clients' actions with row numbers
 SELECT 
-    Id, Name, DateTime,
+    Actions.Id, Name, DateTime,
     ROW_NUMBER() OVER (PARTITION BY ClientId ORDER BY DateTime DESC) 
                     AS Number,
     Users.Username
@@ -161,6 +162,6 @@ SELECT Id, FirstName, LastName, Age,
         WHEN Age < 60 THEN 'Middle aged adult'
         ELSE 'Retired'
     END AS AgeType,
-    IIF(Photo IS NULL, 'No photo', Photo) 
-        AS Photo
+    CASE WHEN Photo IS NULL THEN 'No photo'ELSE Photo
+    END AS Photo
 FROM Clients;
