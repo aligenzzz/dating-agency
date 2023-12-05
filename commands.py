@@ -195,7 +195,7 @@ def client(user: User):
                 id = input('Enter ' + emphasis('chat\'s id') + ': ')
                 chat = Database.get_chat(id, user.username)
 
-                if chat is None:
+                if chat is None or chat.partner is None:
                     print(error('\nInvalid data. Try again!')) 
                     e = input('Do you want exit? (1) ')
                     if e == '1':

@@ -502,7 +502,7 @@ class Database:
             print(e)
             return False
         
-        # Database.connection.commit()
+        Database.connection.commit()
 
         return True
     
