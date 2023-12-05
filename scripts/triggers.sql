@@ -2,9 +2,7 @@ CREATE OR REPLACE FUNCTION addClientTrigger()
 RETURNS TRIGGER AS
 $$
 BEGIN
-    IF NEW.RoleId = 1 THEN
-        CALL addRegisteredAction(NEW.Id);
-    END IF;
+    CALL addRegisteredAction(NEW.Id);
     RETURN NEW;
 END;
 $$
@@ -50,7 +48,31 @@ $$
 LANGUAGE plpgsql;
 
 -- delete all client's complaints if he was banned
-CREATE OR REPLACE TRIGGER deleteBannedClientComplaints
+-- CREATE OR REPLACE TRIGGER deleteBannedClientComplaints
+-- 	AFTER UPDATE ON Clients
+-- 	FOR EACH ROW
+-- 	EXECUTE FUNCTION deleteBannedClientComplaintsTrigger();
+	
+	
+CREATE OR REPLACE FUNCTION updateClientBannedTrigger()
+RETURNS TRIGGER AS
+$$
+BEGIN
+    IF NEW.Banned <> OLD.Banned AND
+	   NEW.Banned = TRUE THEN
+       CALL addBannedChangedAction(NEW.Id, 'Has been banned');
+    END IF;
+	IF NEW.Banned <> OLD.Banned AND
+	   NEW.Banned = FALSE THEN
+       CALL addBannedChangedAction(NEW.Id, 'Has been unbanned');
+    END IF;
+    RETURN NEW;
+END;
+$$
+LANGUAGE plpgsql;
+
+-- add action when client was banned or unbanned
+CREATE OR REPLACE TRIGGER updateClientBanned
 	AFTER UPDATE ON Clients
 	FOR EACH ROW
-	EXECUTE FUNCTION deleteBannedClientComplaintsTrigger();
+	EXECUTE FUNCTION updateClientBannedTrigger();

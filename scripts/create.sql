@@ -47,8 +47,8 @@ CREATE TABLE IF NOT EXISTS Clients
     Banned    BOOLEAN    NOT NULL DEFAULT FALSE,
     
     UserId    INTEGER    REFERENCES Users (Id) ON DELETE CASCADE,
-    InformationId    INTEGER    REFERENCES Informations (Id) ON DELETE SET NULL,
-    LocationId    INTEGER    REFERENCES Locations (Id) ON DELETE SET NULL
+    InformationId    INTEGER    REFERENCES Informations (Id) ON DELETE CASCADE,
+    LocationId    INTEGER    REFERENCES Locations (Id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Complaints 

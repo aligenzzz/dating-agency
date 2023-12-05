@@ -1,6 +1,6 @@
 CREATE OR REPLACE PROCEDURE addRegisteredAction
 (
-	IN clientId	INTEGER	
+	IN client_id	INTEGER	
 )
 AS
 $$
@@ -8,9 +8,9 @@ DECLARE
 	action_datetime TIMESTAMP := NOW();
 	action_name VARCHAR := 'Has been registered';
 	action_id INTEGER;
-BEGIN
+BEGIN	
 	INSERT INTO Actions (Name, DateTime, ClientId)
-    VALUES (action_name, action_datetime, clientId)
+    VALUES (action_name, action_datetime, client_id)
     RETURNING Id INTO action_id;
 
 	RAISE NOTICE 'Action added with ID: %', action_id;
@@ -75,6 +75,26 @@ BEGIN
     RETURNING Id INTO message_id;
 
 	RAISE NOTICE 'Message added with ID: %', message_id;
+END;
+$$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE PROCEDURE addBannedChangedAction
+(
+	IN clientId INTEGER,
+	IN name VARCHAR
+)
+AS
+$$
+DECLARE
+	action_datetime TIMESTAMP := NOW();
+	action_id INTEGER;
+BEGIN
+	INSERT INTO Actions (Name, DateTime, ClientId)
+    VALUES (name, action_datetime, clientId)
+    RETURNING Id INTO action_id;
+
+	RAISE NOTICE 'Action added with ID: %', action_id;
 END;
 $$
 LANGUAGE plpgsql;

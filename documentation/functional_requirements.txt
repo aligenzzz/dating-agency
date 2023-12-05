@@ -14,7 +14,6 @@ Authorization -> User (Client / Moderator / Admin)
 - logging user actions
 
 	Admin:
-- CRUD all models
 - edit role
 - process complaints
 
